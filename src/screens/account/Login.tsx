@@ -3,10 +3,15 @@ import { View, Text } from "../../components/Themed";
 import { StyleSheet, Button, TextInput, TouchableOpacity } from "react-native";
 import axios from "axios";
 
-const Login = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [response, setResponse] = React.useState("");
+//Temporary Fix
+type Props = {
+    navigation: any;
+};
+
+const Login = ({navigation}: Props) => {
+  const [email, setEmail] = React.useState('murray18obrien@gmail.com');
+  const [password, setPassword] = React.useState('Password');
+  const [response, setResponse] = React.useState('');
 
   const handleLogin = () => {
     if(email == '' || password == ''){
@@ -26,9 +31,13 @@ const Login = () => {
 
     axios.post('http://127.0.0.1:8000/api/user/login', data, {headers: headers})
         .then((res) => {
-            if(res.data.Success)
-            setResponse('Successfully logged in')
-            
+            if(res.data.Success){
+                setResponse('Successfully logged in')
+                navigation.push('Root'); 
+                return; 
+            }
+
+            setResponse(res.data.Message)
             
         })
         .catch((err) => {
