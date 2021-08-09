@@ -5,7 +5,7 @@ import { Text, View } from '../components/Themed';
 export default function Diary() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Diary</Text>
+      <Text style={styles.title}>Diary Page</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
     </View>
   );
