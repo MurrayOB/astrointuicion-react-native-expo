@@ -73,11 +73,12 @@ function TabOneNavigator() {
         component={Home}
         options={{
           title: "Astrointuicion",
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => alert("This is a button!")}>
-              <AntDesign size={30} name="bars" style={styles.drawerMenu} />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => null, 
+          // headerLeft: () => (
+          //   <TouchableOpacity onPress={() => alert("This is a button!")}>
+          //     <AntDesign size={30} name="bars" style={styles.drawerMenu} />
+          //   </TouchableOpacity>
+          // ),
         }}
       />
     </TabOneStack.Navigator>
