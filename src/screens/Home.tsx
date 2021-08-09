@@ -29,7 +29,6 @@ const Home = ({navigation} : Props) => {
         <View style={styles.container}>
            <Text>Hello {user.name}</Text> 
            <Text>This is the Home Screen</Text> 
-           <Button onPress={() => navigation.navigate('Login')} title="Back"></Button>
         </View>
     ); 
 }

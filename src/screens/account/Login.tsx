@@ -3,6 +3,8 @@ import { View, Text } from "../../components/Themed";
 import { StyleSheet, Button, TextInput, TouchableOpacity } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from 'expo-secure-store';
+
 //User Model
 import { User } from "../../models/User";
 
@@ -42,7 +44,9 @@ const Login = ({ navigation }: Props) => {
           //Save User: 
           AsyncStorage.setItem('user', JSON.stringify(user))
           setResponse("Successfully logged in " + user.name);
-          navigation.push("Root");
+          //Set Signed In True: 
+          
+
           return;
         }
 
@@ -52,6 +56,8 @@ const Login = ({ navigation }: Props) => {
         const error = err.toString();
         setResponse(error);
       });
+
+      return; 
   };
 
   return (

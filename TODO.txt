@@ -1,0 +1,2 @@
+# When user reports an issue, send user device details
+# Authentication/ Guarding Routes

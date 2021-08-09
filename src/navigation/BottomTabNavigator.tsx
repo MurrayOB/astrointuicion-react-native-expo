@@ -1,6 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 // https://icons.expo.fyi/
-//import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
@@ -18,6 +18,7 @@ import { Button, TouchableOpacity } from "react-native";
 import Home from "../screens/Home";
 import Diary from "../screens/Diary";
 import Settings from "../screens/Settings";
+import Profile from "../screens/profile/Profile";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -43,6 +44,13 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
         }}
       />
+        <BottomTab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ color }) => <Ionicons size={30} name="md-person-circle-outline" color={color} />,
+          }}
+        />
       <BottomTab.Screen
         name="Settings"
         component={Settings}

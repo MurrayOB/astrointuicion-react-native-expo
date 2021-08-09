@@ -12,6 +12,7 @@ export type BottomTabParamList = {
   Home: undefined;
   Diary: undefined;
   Settings: undefined; 
+  Profile: undefined; 
 };
 
 export type TabOneParamList = {
