@@ -29,15 +29,15 @@ function RootNavigator() {
   const authenticated = false; 
 
   return (
-    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Root" screenOptions={{ headerShown: false }}>
        {authenticated == false ? (
         <>
           <Stack.Screen name="Root" component={BottomTabNavigator} />
+          <Stack.Screen name="Login" component={Login} />
         </>
       ) : (
         <>
           <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-          <Stack.Screen name="Login" component={Login} />
         </>
       )}
     </Stack.Navigator>

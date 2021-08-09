@@ -4,6 +4,7 @@ import { StyleSheet, Button, TextInput, TouchableOpacity } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from 'expo-secure-store';
+import SubmitButton from '../../components/shared/SubmitButton'; 
 
 //User Model
 import { User } from "../../models/User";
@@ -14,8 +15,8 @@ type Props = {
 };
 
 const Login = ({ navigation }: Props) => {
-  const [email, setEmail] = React.useState("murray18obrien@gmail.com");
-  const [password, setPassword] = React.useState("Password");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [response, setResponse] = React.useState("");
 
   const headers = {
@@ -60,18 +61,21 @@ const Login = ({ navigation }: Props) => {
       return; 
   };
 
+  const cleanBtnStyle = styles.input; 
+  const dirtyBtnStyle = styles.input; 
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TextInput style={styles.input} onChangeText={setEmail} value={email} />
+      <TextInput placeholder="Email" style={styles.input} onChangeText={setEmail} value={email} />
       <TextInput
+        placeholder="Password"
         style={styles.input}
         onChangeText={setPassword}
         value={password}
+        secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.title}>Login</Text>
-      </TouchableOpacity>
+      <SubmitButton title={"Login"} handleOnPress={handleLogin} />
       <Text>{response}</Text>
     </View>
   );
@@ -87,18 +91,31 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "600",
   },
-  input: {
-    height: 40,
+  inputDirty: {
+    height: 50,
     width: 300,
     margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 8,
+    paddingLeft: 20,  
+    paddingRight: 20,  
+    paddingTop: 10,  
+    paddingBottom: 10,  
+    fontSize: 20, 
+    borderRadius: 10,
+    backgroundColor: "rgb(240, 240, 240)", 
+    borderColor: "#ffa3a3", 
+    borderWidth: 4,
   },
-  button: {
-    backgroundColor: "rgb(110, 200, 100)",
-    borderRadius: 20,
-    padding: 20,
+  input: {
+    height: 50,
+    width: 300,
+    margin: 12,
+    paddingLeft: 20,  
+    paddingRight: 20,  
+    paddingTop: 10,  
+    paddingBottom: 10,  
+    fontSize: 20, 
+    borderRadius: 10,
+    backgroundColor: "rgb(240, 240, 240)", 
   },
 });
 
