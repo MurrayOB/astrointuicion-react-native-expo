@@ -2,12 +2,12 @@ import * as React from "react";
 import { View, Text } from "../../components/Themed";
 import { StyleSheet, Button, TextInput, TouchableOpacity } from "react-native";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from 'expo-secure-store';
 import SubmitButton from '../../components/shared/SubmitButton'; 
 
 //User Model
 import { User } from "../../models/User";
+import { AuthContext } from "../../components/Context";
 
 //Temporary Fix
 type Props = {
@@ -18,6 +18,8 @@ const Login = ({ navigation }: Props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [response, setResponse] = React.useState("");
+  
+  const { signIn }  = React.useContext(AuthContext); 
 
   const headers = {
     "Content-Type": "application/json",
@@ -35,22 +37,19 @@ const Login = ({ navigation }: Props) => {
       setResponse("Username or Password cannot be empty");
       return;
     }
-
-    //POST
+     
+    // POST
     axios
       .post("http://127.0.0.1:8000/api/user/login", data, { headers: headers })
       .then((res) => {
         if (res.data.Success) {
           const user : User = res.data.Data.user;
           //Save User: 
-          AsyncStorage.setItem('user', JSON.stringify(user))
+          signIn(res.data.Data.token, user);
           setResponse("Successfully logged in " + user.name);
           //Set Signed In True: 
-          
-
           return;
         }
-
         setResponse(res.data.Message);
       })
       .catch((err) => {
