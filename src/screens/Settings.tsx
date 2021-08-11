@@ -16,7 +16,6 @@ const Settings = () => {
                 onValueChange={toggleSwitch}
                 value={isEnabled}
             />
-
         </View>
     ); 
 }

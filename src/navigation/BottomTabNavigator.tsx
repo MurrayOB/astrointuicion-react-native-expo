@@ -10,7 +10,7 @@ import {
   BottomTabParamList,
   TabOneParamList,
   TabTwoParamList,
-} from "../../types";
+} from "../types";
 import { StyleSheet } from "react-native";
 import { Button, TouchableOpacity } from "react-native";
 
